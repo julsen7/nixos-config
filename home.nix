@@ -141,15 +141,11 @@
     userEmail = "263753131+julsen7@users.noreply.github.com";
 
     extraConfig = {
-      credential = {
-        "https://github.com" = {
-          helper = "";
-          helper = "!${pkgs.github-cli}/bin/gh auth git-credential";
-        };
-        "https://gist.github.com" = {
-          helper = "";
-          helper = "!${pkgs.github-cli}/bin/gh auth git-credential";
-        };
+      "credential \"https://github.com\"" = {
+        helper = "${pkgs.github-cli}/bin/gh auth git-credential";
+      };
+      "credential \"https://gist.github.com\"" = {
+        helper = "${pkgs.github-cli}/bin/gh auth git-credential";
       };
     };
   };
