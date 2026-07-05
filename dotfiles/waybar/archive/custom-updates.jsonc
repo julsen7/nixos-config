@@ -1,0 +1,10 @@
+{
+  "custom/updates": {
+    "exec": "~/.config/waybar/check-updates.sh",
+    "format": " {}",
+    "return-type": "json",
+    "interval": 1800,
+    "signal": 8,
+    "on-click": "~/.config/waybar/install-updates.sh"
+  }
+}

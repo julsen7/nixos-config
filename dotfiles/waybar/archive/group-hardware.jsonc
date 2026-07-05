@@ -1,0 +1,35 @@
+{
+    "group/hardware": {
+        "orientation": "horizontal",
+        "modules": [
+            "custom/cpu",
+            "custom/gpu",
+            "memory",
+            "disk"
+        ]
+    },
+    "custom/cpu": {
+        "exec": "echo \"{\\\"text\\\":\\\" $((100 - $(vmstat | tail -1 | awk '{print $15}')))%\\\",\\\"tooltip\\\":\\\"CPU Temp: $(sensors | grep -E '(Core 0|Tctl|Tdie)' | head -n 1 | awk '{print $2}' | tr -d '+')\\\"}\"",
+        "format": "{}",
+        "on-click": "uwsm app -- kitty --title=btop -e btop",
+        "return-type": "json",
+        "interval": 10
+    },
+    "custom/gpu": {
+        "exec": "echo \"{\\\"text\\\":\\\"|  $(cat /sys/class/hwmon/hwmon4/device/gpu_busy_percent 2>/dev/null || echo 0)%\\\",\\\"tooltip\\\":\\\"GPU Temp: $(( $(cat /sys/class/hwmon/hwmon4/temp1_input 2>/dev/null || echo 0) / 1000 ))°C\\\"}\"",
+        "format": "{}",
+        "on-click": "uwsm app -- kitty --title=nvtop -e nvtop",
+        "return-type": "json",
+        "interval": 10
+    },
+    "memory": {
+        "format": "|  {percentage}%",
+        "on-click": "uwsm app -- kitty --title=btop -e btop",
+        "interval": 10
+    },
+    "disk": {
+        "format": "|  {specific_used:0.0f}/{specific_free:0.0f}GB",
+        "unit": "GB",
+        "interval": 10
+    }
+}
