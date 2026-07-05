@@ -1,0 +1,7 @@
+{
+    "custom/arch-icon": {
+        "format": "󰣇",
+        "on-click": "uwsm app -- kitty",
+        "tooltip": false
+    }
+}

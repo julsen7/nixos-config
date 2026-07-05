@@ -1,0 +1,27 @@
+{
+    "pulseaudio": {
+        "format": "{icon}",
+        "format-muted": "",
+        "format-bluetooth": "{icon}",
+        "format-icons": {
+            "headphone": "󰋋",
+            "headset": "󰋎",
+            "default": [
+                "",
+                "",
+                ""
+            ]
+        },
+        "tooltip-format": "{desc}",
+        "on-click": "wpctl set-mute @DEFAULT_SINK@ toggle",
+        "on-click-right": "uwsm app -- kitty --title=wiremix -e wiremix"
+    },
+    "pulseaudio#microphone": {
+        "format": "{format_source}",
+        "format-source": "",
+        "format-source-muted": "",
+        "tooltip-format": "{source_desc}",
+        "on-click": "wpctl set-mute @DEFAULT_SOURCE@ toggle",
+        "on-click-right": "uwsm app -- kitty --title=wiremix -e wiremix"
+    }
+}
