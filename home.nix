@@ -210,11 +210,6 @@
       cursor_stop_blinking_after = 0;
       cursor_trail = 10;
       
-      mouse_hide_wait = "3.0";
-      
-      enable_audio_bell = "no";
-      
-      window_padding_width = 30;
       confirm_os_window_close = 0;
       
       shell = "zsh";
