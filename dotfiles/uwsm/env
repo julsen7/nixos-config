@@ -1,8 +1,0 @@
-export GTK_THEME=Adwaita:dark
-export XCURSOR_THEME=Bibata-Modern-Ice
-export XCURSOR_SIZE=24
-export QT_QPA_PLATFORMTHEME=gtk3
-
-export STARSHIP_CONFIG=~/.config/starship/starship.toml
-export EDITOR=code
-export PATH=$PATH:~/.spicetify

@@ -8,22 +8,17 @@
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
-    chromium
-
     awww
     blender
     bluetui
     btop
+    chromium
     discord
     cliphist
     dunst
     easyeffects
-    eza
-    fastfetch
-    fzf
     gimp
     github-cli
-    hyprlock
     hyprpolkitagent
     hyprpicker
     hyprshot
@@ -55,89 +50,51 @@
     # '';
   };
 
-  # Home Manager can also manage your environment variables through
-  # 'home.sessionVariables'. These will be explicitly sourced when using a
-  # shell provided by Home Manager. If you don't want to manage your shell
-  # through Home Manager then you have to manually source 'hm-session-vars.sh'
-  # located at either
-  #
-  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  ~/.local/state/nix/profiles/profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  /etc/profiles/per-user/julsen/etc/profile.d/hm-session-vars.sh
-  #
+  xdg.configFile = {
+    "dunst/dunstrc".source = ./dotfiles/dunst/dunstrc;
+    "hypr/hyprland.lua".source = ./dotfiles/hypr/hyprland.lua;
+    "obs-studio/hyprland.lua".source = ./dotfiles/obs-studio;
+    "rofi/config.rasi".source = ./dotfiles/rofi/config.rasi;
+    "waybar".source = ./dotfiles/waybar;
+  };
+
   home.sessionVariables = {
-    # EDITOR = "emacs";
-  };
-
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
-
-    shellAliases = {
-      ls = "eza --icons --group-directories-first --color=always";
-      ll = "eza -lh --icons --group-directories-first";
-      lt = "eza --tree --level=2 --icons";
-      la = "eza -a --icons";
-      lla = "eza -lha --icons --group-directories-first";
-      cd = "z";
-      cl = "clear";
-      # Der neue Update-Befehl für dein Flake-System:
-      update = "sudo nixos-rebuild switch --flake ~/nixos-config#$(hostname)";
-    };
-
-    history = {
-      size = 10000;
-      ignoreAllDups = true;
-      path = "$HOME/.zsh_history";
-      ignorePatterns = ["rm *" "pkill *" "cp *"];
-    };
-
-    initExtra = ''
-      # Zusätzliche History-Optionen
-      setopt APPEND_HISTORY
-      setopt HIST_SAVE_NO_DUPS
-
-      # Completion-Menü Styling
-      zstyle ':completion:*' menu select
-      zstyle ':completion:*' use-cache on
-      zstyle ':completion:*' cache-path ~/.cache/zsh/
-
-      # Tastenkürzel: Entf-Taste (Delete) reparieren
-      bindkey '^[[3~' delete-char
-
-      # Inits für Tools (Fzf wird von Home Manager separat unten sauberer gelöst)
-      eval "$(zoxide init zsh)"
-    '';
-  };
-
-  programs.fzf = {
-    enable = true;
-    enableZshIntegration = true;
+    EDITOR = "code";
+    HYPRCURSOR_THEME = "Bibata-Modern-Ice";
+    HYPRCURSOR_SIZE = "24";
   };
 
   home.sessionPath = [
+    "${config.home.homeDirectory}/.local/share/icons"
     "${config.home.homeDirectory}/.spicetify"
   ];
 
-  xdg.configFile = {
-    "hypr/hyprland.lua".source = ./dotfiles/hypr/hyprland.lua;
-    "fastfetch/config.jsonc".source = ./dotfiles/fastfetch/config.jsonc;
-    "rofi/config.rasi".source = ./dotfiles/rofi/config.rasi;
-    "waybar".source = ./dotfiles/waybar;
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Adwaita-dark";
+      package = pkgs.gnome-themes-extra;
+    };
+  };
+
+  home.pointerCursor = {
+    gtk.enable = true;
+    x11.enable = true;
+    name = "Bibata-Modern-Ice";
+    size = 24;
+    package = pkgs.bibata-cursors;
+  };
+
+  qt = {
+    enable = true;
+    platformTheme.name = "gtk3";
   };
 
   programs.git = {
     enable = true;
     userName  = "julsen7";
     userEmail = "263753131+julsen7@users.noreply.github.com";
+    init.defaultBranch = "main";
 
     extraConfig = {
       "credential \"https://github.com\"" = {
@@ -149,8 +106,97 @@
     };
   };
 
+  programs.zsh = {
+    enable = true;
+    autosuggestion.enable = true;
+    enableCompletion = true;
+    history = {
+      append = true;
+      ignoreAllDups = true;
+      saveNoDups = true;
+      size = 10000;
+      path = "`\${config.programs.zsh.dotDir}/.zsh_history`";
+    };
+    
+    shellAliases = {
+      ls = "eza --icons --group-directories-first --color=always";
+      ll = "eza -lh --icons --group-directories-first";
+      lt = "eza --tree --level=2 --icons";
+      la = "eza -a --icons";
+      lla = "eza -lha --icons --group-directories-first";
+      cd = "z";
+      cl = "clear";
+      update = "sudo nixos-rebuild switch --flake ~/nixos-config#$(hostname)";
+    };
+
+    syntaxHighlighting.enable = true;
+
+    completionInit = ''
+      zstyle ':completion:*' menu select
+      zstyle ':completion:*' use-cache on
+      zstyle ':completion:*' cache-path ~/.cache/zsh/
+      autoload -U compinit && compinit
+    '';
+
+    initContent = ''
+      bindkey '^[[3~' delete-char
+    '';
+  };
+
+  programs.eza = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.fastfetch = {
+    settings = {
+      logo = {
+        source = "nixos_small";
+        padding = {
+          right = 1;
+        };
+      };
+      display = {
+        size = {
+          binaryPrefix = "si";
+        };
+        color = "blue";
+        separator = "  ";
+      };
+      modules = [
+        {
+          type = "datetime";
+          key = "Date";
+          format = "{1}-{3}-{11}";
+        }
+        {
+          type = "datetime";
+          key = "Time";
+          format = "{14}:{17}:{20}";
+        }
+        "break"
+        "player"
+        "media"
+      ];
+    };
+  };
+
   programs.kitty = {
     enable = true;
+    dynamic_background_opacity = true;
+    enable_audio_bell = false;
+    mouse_hide_wait = "3.0";
+    window_padding_width = 30;
 
     font = {
       name = "JetBrainsMono Nerd Font";
@@ -184,22 +230,19 @@
 
     # Hier wandert deine TOML-Konfiguration direkt als Nix-Attribut-Set hinein
     settings = {
-      "$schema" = "https://starship.rs/config-schema.json";
-
-      format = ''
-        $os\
-        $directory\
-        $git_branch\
-        $git_status\
-        $fill\
-        $all\
-        $cmd_duration\
-        $time\
-        $line_break\
-        $character
-      '';
-
       add_newline = true;
+      format = lib.concatStrings [
+        "$os"
+        "$directory"
+        "$git_branch"
+        "$git_status"
+        "$fill"
+        "$all"
+        "$cmd_duration"
+        "$time"
+        "$line_break"
+        "$character"
+      ];
 
       os = {
         format = "[$symbol]($style) ";
@@ -211,10 +254,10 @@
       };
 
       directory = {
-        format = "[   $path]($style)[$read_only]($read_only_style) ";
+        format = "[󰉋 $path]($style)[$read_only]($read_only_style) ";
         truncate_to_repo = false;
         substitutions = {
-          "Documents" = "   Documents";
+          "Documents" = "󰈙 Documents";
           "Downloads" = " Downloads";
           "Music" = " Music";
           "Pictures" = " Pictures";
@@ -245,41 +288,41 @@
 
       java = {
         format = " [\${symbol} (\${version})]($style) ";
-        symbol = "  ";
+        symbol = "󰬷";
         style = "#ed8b00";
       };
 
       c = {
         format = " [\${symbol} (\${version})]($style) ";
-        symbol = "  ";
+        symbol = "󰙱";
         style = "#3848a9";
       };
 
       cpp = {
         format = " [\${symbol} (\${version})]($style) ";
-        symbol = "  ";
+        symbol = "󰙲";
         style = "#00599c";
       };
 
       haskell = {
         format = " [\${symbol} (\${version})]($style) ";
-        symbol = "  ";
+        symbol = "󰲒";
         style = "#5e5086";
       };
 
       kotlin = {
         format = " [\${symbol} (\${version})]($style) ";
-        symbol = "  ";
+        symbol = "󱈙";
       };
 
       python = {
         format = " [\${symbol} (\${version})]($style) ";
-        symbol = "  ";
+        symbol = "󰌠";
         style = "#ffd43b";
       };
 
       cmd_duration = {
-        format = "    [$duration]($style) ";
+        format = " 󱦟 [$duration]($style) ";
       };
 
       time = {
@@ -307,9 +350,8 @@
 
   programs.yazi = {
     enable = true;
-    enableZshIntegration = true; # Erlaubt schnelles Navigieren in der Shell
+    enableZshIntegration = true;
 
-    # Hier wandert deine TOML-Konfiguration direkt als Nix-Struktur hinein
     settings = {
       mgr = {
         show_hidden = true;
@@ -318,7 +360,6 @@
       opener = {
         vscode = [
           {
-            # NixOS findet den Pfad zu VS Code hier automatisch aus dem System
             run = "${pkgs.vscode}/bin/code %s";
             orphan = true;
             for = "unix";
@@ -337,26 +378,22 @@
     };
   };
 
-  wayland.windowManager.hyprland = {
-    enable = true;
-  };
+  # programs.obs-studio = {
+  #   enable = true;
 
-  programs.obs-studio = {
-    enable = true;
+  #   package = (
+  #     pkgs.obs-studio.override {
+  #       cudaSupport = true;
+  #     }
+  #   );
 
-    package = (
-      pkgs.obs-studio.override {
-        cudaSupport = true;
-      }
-    );
-
-    plugins = with pkgs.obs-studio-plugins; [
-      wlrobs
-      obs-backgroundremoval
-      obs-pipewire-audio-capture
-      obs-vaapi
-      obs-gstreamer
-      obs-vkcapture
-    ];
-  };
+  #   plugins = with pkgs.obs-studio-plugins; [
+  #     wlrobs
+  #     obs-backgroundremoval
+  #     obs-pipewire-audio-capture
+  #     obs-vaapi
+  #     obs-gstreamer
+  #     obs-vkcapture
+  #   ];
+  # };
 }
