@@ -291,7 +291,9 @@
 
   services.udiskie = {
     enable = true;
-    tray = "auto"; # Entspricht 'tray: auto' aus deinem YAML
+    tray = "auto";
+    automount = true;
+    notify = true;
 
     # Hier wandern deine restlichen Programmeinstellungen rein
     settings = {
@@ -303,7 +305,7 @@
     };
   };
 
-    programs.yazi = {
+  programs.yazi = {
     enable = true;
     enableZshIntegration = true; # Erlaubt schnelles Navigieren in der Shell
 
