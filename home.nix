@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   home.username = "julsen";
@@ -231,7 +231,7 @@
     # Hier wandert deine TOML-Konfiguration direkt als Nix-Attribut-Set hinein
     settings = {
       add_newline = true;
-      format = .concatStrings [
+      format = lib.concatStrings [
         "$os"
         "$directory"
         "$git_branch"
