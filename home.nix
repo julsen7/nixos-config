@@ -5,37 +5,39 @@
   home.homeDirectory = "/home/julsen";
   home.stateVersion = "26.05";
 
+  programs.home-manager.enable = true;
+
   home.packages = with pkgs; [
-    piper
-    hyprlock
-    matugen
-    bluetui
-    wiremix
-    noto-fonts
-    noto-fonts-color-emoji
-    nerd-fonts.jetbrains-mono
+    awww
     blender
-    gimp
-    krita
-    discord
-    spotify
-    vscode
+    bluetui
     btop
-    rofi
-    github-cli
-    jdk
-    easyeffects
+    discord
+    cliphist
     dunst
+    easyeffects
+    eza
+    fastfetch
+    fzf
+    gimp
+    github-cli
+    hyprlock
     hyprpolkitagent
     hyprpicker
     hyprshot
-    cliphist
+    jdk
+    krita
+    matugen
+    noto-fonts
+    noto-fonts-color-emoji
+    nerd-fonts.jetbrains-mono
+    piper
+    rofi
+    spotify
+    vscode
     waybar
-    awww
-    fastfetch
-    eza
+    wiremix
     zoxide
-    fzf
   ];
 
   home.file = {
@@ -353,6 +355,4 @@
       obs-vkcapture
     ];
   };
-
-  programs.home-manager.enable = true;
 }
