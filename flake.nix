@@ -1,5 +1,5 @@
 {
-  description = "Mein minimalistisches, reproduzierbares System mit separaten Hosts";
+  description = "Julsen NixOS";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
