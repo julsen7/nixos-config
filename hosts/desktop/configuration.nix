@@ -91,13 +91,6 @@
     hashedPassword = "$y$j9T$n8yEDLyG5/IORRV5SPJ5I.$KEdyBgQbDYMSWWxeZYgW/NpdKltwuBk7RZU7ydNzb5.";
   };
 
-  home-manager = {
-    extraSpecialArgs = { inherit inputs; };
-    users = {
-      "julsen" = import ../../home.nix;
-    };
-  };
-
   # PACKAGES
 
   nixpkgs.config.allowUnfree = true;
