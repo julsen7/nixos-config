@@ -5,18 +5,6 @@
   "margin-right": 10,
   "margin-bottom": 0,
   "spacing": 5,
-  "include": [
-    "~/.config/waybar/modules/custom-arch-icon.jsonc",
-    "~/.config/waybar/modules/mpris.jsonc",
-    "~/.config/waybar/modules/custom-weather.jsonc",
-    "~/.config/waybar/modules/tray.jsonc",
-    "~/.config/waybar/modules/clock.jsonc",
-    "~/.config/waybar/modules/hyprland-workspaces.jsonc",
-    "~/.config/waybar/modules/group-audio.jsonc",
-    "~/.config/waybar/modules/bluetooth.jsonc",
-    "~/.config/waybar/modules/network.jsonc",
-    "~/.config/waybar/modules/battery.jsonc"
-  ],
   "modules-left": [
     "custom/arch-icon",
     "mpris",
@@ -32,5 +20,125 @@
     "bluetooth",
     "network",
     "battery"
-  ]
+  ],
+  // MODULES LEFT
+  "custom/arch-icon": {
+    "format": "󰣇",
+    "on-click": "uwsm app -- kitty",
+    "tooltip": false
+  },
+  "mpris": {
+    "format": "{player_icon} {status_icon} {title} - {artist} <span color='#808080'>{position}|{length}</span>",
+    "interval": 1,
+    "max-length": 40,
+    "player-icons": {
+      "spotify": "",
+      "firefox": ""
+    },
+    "status-icons": {
+      "playing": "",
+      "paused": ""
+    }
+  },
+  "custom/weather": {
+    "exec": "~/.config/waybar/scripts/weather.sh",
+    "format": "{}",
+    "return-type": "json",
+    "interval": 1800,
+    "tooltip": true
+  },
+  "tray": {
+    "spacing": 10,
+    "show-passive-items": false
+  },
+  // MODULES CENTER
+  "hyprland/workspaces": {
+    "format": "{windows}",
+    "on-click": "hyprctl dispatch hl.dsp.focus({ workspace = {icon} })",
+    "window-rewrite-default": "",
+    "window-rewrite": {
+      "class<kitty>": "",
+      "class<zen>": "",
+      "class<code>": "󰨞",
+      "class<spotify>": "",
+      "class<discord>": "",
+      "class<obs>": "󱜠",
+      "class<blender>": "󰂫",
+      "class<steam>": "",
+      "class<krita>": "",
+      "class<gimp>": "",
+      "class<.*virtu.*>": "󰍺",
+      "class<.*prism.*>": "",
+      "title<.*minecraft.*>": "󰍳",
+      "class<zen> title<.*youtube.*>": "",
+      "class<zen> title<.*twitch.*>": "",
+      "class<zen> title<.*gmail.*>": "󰊫",
+      "class<zen> title<.*moodle.*>": ""
+    }
+  },
+  "clock": {
+    "tooltip": false
+  },
+  // MODULES RIGHT
+  "group/audio": {
+    "orientation": "horizontal",
+    "modules": [
+      "pulseaudio",
+      "pulseaudio/slider",
+      "pulseaudio#microphone"
+    ]
+  },
+  "pulseaudio": {
+    "format": "{icon}",
+    "format-muted": "",
+    "format-bluetooth": "{icon}",
+    "format-icons": {
+      "headphone": "󰋋",
+      "headset": "󰋎",
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "tooltip-format": "{desc}",
+    "on-click": "wpctl set-mute @DEFAULT_SINK@ toggle",
+    "on-click-right": "uwsm app -- kitty --title=wiremix -e wiremix"
+  },
+  "pulseaudio#microphone": {
+    "format": "{format_source}",
+    "format-source": "",
+    "format-source-muted": "",
+    "tooltip-format": "{source_desc}",
+    "on-click": "wpctl set-mute @DEFAULT_SOURCE@ toggle",
+    "on-click-right": "uwsm app -- kitty --title=wiremix -e wiremix"
+  },
+  "bluetooth": {
+    "format": "󰂯 {num_connections}",
+    "on-click": "uwsm app -- kitty --title=bluetui -e bluetui",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}"
+  },
+  "network": {
+    "format": "",
+    "format-ethernet": "󰌗",
+    "format-wifi": " {essid}",
+    "tooltip-format-ethernet": " {bandwidthDownBytes}  {bandwidthUpBytes}",
+    "tooltip-format-wifi": " {bandwidthDownBytes}  {bandwidthUpBytes}|{signalStrength}%",
+    "on-click": "uwsm app -- kitty --title=nmtui-go -e nmtui-go"
+  },
+  "battery": {
+    "format": "{icon} {capacity}%",
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  }
 }
