@@ -250,7 +250,7 @@ in {
           name = "vscode-database-client2";
           publisher = "cweijan";
           version = "4.5.3";
-          sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+          sha256 = "sha256-hurTrNC1xhq7g9EFa8nQg6tNmzCpVym7jXcmBxWxLI=";
         }
         {
           name = "vscode-python-envs";
@@ -683,9 +683,11 @@ in {
       shuffle
     ];
     theme = {
-      name = "Theme";
       src = ./dotfiles/spicetify/Themes;
-      appendName = true;
+      injectCss = true;
+      injectThemeJs = true;
+      replaceColors = true;
+      overwriteAssets = true;
     };
     colorScheme = "Theme";
   };
