@@ -216,19 +216,27 @@ in {
         ];
         "files.simpleDialog.enable" = true;
       };
-      extensions = (with pkgs.vscode-extensions; [
+      extensions = with pkgs.vscode-extensions; [
+        bbenoist.nix
+        cweijan.dbclient-jdbc
+        cweijan.vscode-database-client2
         davidanson.vscode-markdownlint
         eamodio.gitlens
         ecmel.vscode-html-css
         github.github-vscode-theme
-        haskell.language-haskell # Neu hinzugefügt aus deinem Screenshot
+        haskell.haskell
+        haskell.language-haskell
         james-yu.latex-workshop
         ms-python.debugpy
         ms-python.python
         ms-python.vscode-pylance
         ms-vscode.cmake-tools
+        ms-vscode.cpp-devtools
         ms-vscode.cpptools
+        ms-vscode.cpptools-extension-pack
+        ms-vscode.cpptools-themes
         pkief.material-icon-theme
+        rebornix.prolog
         redhat.java
         ritwickdey.liveserver
         sumneko.lua
@@ -239,62 +247,8 @@ in {
         vscjava.vscode-java-pack
         vscjava.vscode-java-test
         vscjava.vscode-maven
-      ]) ++ (pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-        {
-          name = "dbclient-jdbc";
-          publisher = "cweijan";
-          version = "1.4.6";
-          sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
-        }
-        {
-          name = "vscode-database-client2";
-          publisher = "cweijan";
-          version = "9.0.2";
-          sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
-        }
-        {
-          name = "vscode-python-envs";
-          publisher = "ms-python";
-          version = "1.3.6";
-          sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
-        }
-        {
-          name = "cpp-devtools";
-          publisher = "ms-vscode";
-          version = "0.5.13";
-          sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
-        }
-        {
-          name = "cpptools-extension-pack";
-          publisher = "ms-vscode";
-          version = "1.5.1";
-          sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
-        }
-        {
-          name = "cpptools-themes";
-          publisher = "ms-vscode";
-          version = "2.0.0"; 
-          sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
-        }
-        {
-          name = "prolog";
-          publisher = "rebornix";
-          version = "0.0.4";
-          sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
-        }
-        {
-          name = "logo-lang";
-          publisher = "zion-school";
-          version = "0.8.1";
-          sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
-        }
-        {
-          name = "haskell";
-          publisher = "haskell";
-          version = "2.6.1";
-          sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
-        }
-      ]);
+        zion-school.logo-lang
+      ]
     };
   };
 
