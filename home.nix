@@ -187,107 +187,109 @@ in {
 
   programs.vscode = {
     enable = true;
-    userSettings = {
-      "explorer.confirmDelete" = false;
-      "workbench.iconTheme" = "material-icon-theme";
-      "workbench.secondarySideBar.defaultVisibility" = "hidden";
-      "explorer.confirmDragAndDrop" = false;
-      "git.confirmSync" = false;
-      "git.autofetch" = true;
-      "editor.fontFamily" = "'JetBrainsMono Nerd Font Propo', 'Droid Sans Mono', monospace";
-      "explorer.confirmPasteNative" = false;
-      "latex-workshop.latex.autoBuild.run" = "onFileChange";
-      "files.autoSave" = "afterDelay";
-      "workbench.startupEditor" = "none";
-      "files.exclude" = {
-        "**/.git" = false;
+    profiles.default = {
+      userSettings = {
+        "explorer.confirmDelete" = false;
+        "workbench.iconTheme" = "material-icon-theme";
+        "workbench.secondarySideBar.defaultVisibility" = "hidden";
+        "explorer.confirmDragAndDrop" = false;
+        "git.confirmSync" = false;
+        "git.autofetch" = true;
+        "editor.fontFamily" = "'JetBrainsMono Nerd Font Propo', 'Droid Sans Mono', monospace";
+        "explorer.confirmPasteNative" = false;
+        "latex-workshop.latex.autoBuild.run" = "onFileChange";
+        "files.autoSave" = "afterDelay";
+        "workbench.startupEditor" = "none";
+        "files.exclude" = {
+          "**/.git" = false;
+        };
+        "latex-workshop.formatting.latex" = "tex-fmt";
+        "github.copilot.enable" = {
+          "*" = false;
+          "plaintext" = false;
+          "markdown" = false;
+          "scminput" = false;
+        };
+        "workbench.colorTheme" = "GitHub Dark Default";
+        "Lua.workspace.library" = [
+          "/usr/share/hypr/stubs"
+        ];
+        "files.simpleDialog.enable" = true;
       };
-      "latex-workshop.formatting.latex" = "tex-fmt";
-      "github.copilot.enable" = {
-        "*" = false;
-        "plaintext" = false;
-        "markdown" = false;
-        "scminput" = false;
-      };
-      "workbench.colorTheme" = "GitHub Dark Default";
-      "Lua.workspace.library" = [
-        "/usr/share/hypr/stubs"
-      ];
-      "files.simpleDialog.enable" = true;
+      extensions = (with pkgs.vscode-extensions; [
+        davidanson.vscode-markdownlint
+        eamodio.gitlens
+        ecmel.vscode-html-css
+        github.github-vscode-theme
+        haskell.haskell
+        james-yu.latex-workshop
+        ms-python.debugpy
+        ms-python.python
+        ms-python.vscode-pylance
+        ms-vscode.cmake-tools
+        ms-vscode.cpptools
+        pkief.material-icon-theme
+        redhat.java
+        ritwickdey.liveserver
+        sumneko.lua
+        tamasfe.even-better-toml
+        vscjava.vscode-gradle
+        vscjava.vscode-java-debug
+        vscjava.vscode-java-dependency
+        vscjava.vscode-java-pack
+        vscjava.vscode-java-test
+        vscjava.vscode-maven
+      ]) ++ (pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+        {
+          name = "dbclient-jdbc";
+          publisher = "cweijan";
+          version = "4.5.3";
+          sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+        }
+        {
+          name = "vscode-database-client2";
+          publisher = "cweijan";
+          version = "4.5.3";
+          sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+        }
+        {
+          name = "vscode-python-envs";
+          publisher = "ms-python";
+          version = "2024.0.0";
+          sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+        }
+        {
+          name = "cpp-devtools";
+          publisher = "ms-vscode";
+          version = "0.0.1";
+          sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+        }
+        {
+          name = "cpptools-extension-pack";
+          publisher = "ms-vscode";
+          version = "1.3.0";
+          sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+        }
+        {
+          name = "cpptools-themes";
+          publisher = "ms-vscode";
+          version = "2.0.0";
+          sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+        }
+        {
+          name = "prolog";
+          publisher = "rebornix";
+          version = "0.1.1";
+          sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+        }
+        {
+          name = "logo-lang";
+          publisher = "zion-school";
+          version = "0.0.3";
+          sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+        }
+      ]);
     };
-    profiles.default.extensions = (with pkgs.vscode-extensions; [
-      davidanson.vscode-markdownlint
-      eamodio.gitlens
-      ecmel.vscode-html-css
-      github.github-vscode-theme
-      haskell.haskell
-      james-yu.latex-workshop
-      ms-python.debugpy
-      ms-python.python
-      ms-python.vscode-pylance
-      ms-vscode.cmake-tools
-      ms-vscode.cpptools
-      pkief.material-icon-theme
-      redhat.java
-      ritwickdey.liveserver
-      sumneko.lua
-      tamasfe.even-better-toml
-      vscjava.vscode-gradle
-      vscjava.vscode-java-debug
-      vscjava.vscode-java-dependency
-      vscjava.vscode-java-pack
-      vscjava.vscode-java-test
-      vscjava.vscode-maven
-    ]) ++ (pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-      {
-        name = "dbclient-jdbc";
-        publisher = "cweijan";
-        version = "4.5.3";
-        sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
-      }
-      {
-        name = "vscode-database-client2";
-        publisher = "cweijan";
-        version = "4.5.3";
-        sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
-      }
-      {
-        name = "vscode-python-envs";
-        publisher = "ms-python";
-        version = "2024.0.0";
-        sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
-      }
-      {
-        name = "cpp-devtools";
-        publisher = "ms-vscode";
-        version = "0.0.1";
-        sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
-      }
-      {
-        name = "cpptools-extension-pack";
-        publisher = "ms-vscode";
-        version = "1.3.0";
-        sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
-      }
-      {
-        name = "cpptools-themes";
-        publisher = "ms-vscode";
-        version = "2.0.0";
-        sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
-      }
-      {
-        name = "prolog";
-        publisher = "rebornix";
-        version = "0.1.1";
-        sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
-      }
-      {
-        name = "logo-lang";
-        publisher = "zion-school";
-        version = "0.0.3";
-        sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
-      }
-    ]);
   };
 
   services.dunst = {
