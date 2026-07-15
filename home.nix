@@ -135,14 +135,15 @@ in {
 
   programs.zsh = {
     enable = true;
-    autosuggestion.enable = true;
     enableCompletion = true;
+
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+
     history = {
-      append = true;
       ignoreAllDups = true;
       saveNoDups = true;
       size = 10000;
-      path = "${config.home.homeDirectory}/.zsh_history";
     };
     
     shellAliases = {
@@ -156,8 +157,6 @@ in {
       update = "sudo nixos-rebuild switch --flake ~/nixos-config#$(hostname)";
     };
 
-    syntaxHighlighting.enable = true;
-
     completionInit = ''
       zstyle ':completion:*' menu select
       zstyle ':completion:*' use-cache on
@@ -165,9 +164,24 @@ in {
       autoload -U compinit && compinit
     '';
 
-    initContent = ''
-      bindkey '^[[3~' delete-char
-    '';
+    # initContent = ''
+    #   bindkey '^[[3~' delete-char
+    # '';
+  };
+
+  programs.eza = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
   };
 
   programs.git = {
@@ -535,21 +549,6 @@ in {
     extraConfig = ''
       include current-theme.conf
     '';
-  };
-
-  programs.eza = {
-    enable = true;
-    enableZshIntegration = true;
-  };
-
-  programs.zoxide = {
-    enable = true;
-    enableZshIntegration = true;
-  };
-
-  programs.fzf = {
-    enable = true;
-    enableZshIntegration = true;
   };
 
   # matugen
