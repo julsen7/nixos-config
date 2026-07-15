@@ -250,7 +250,7 @@ in {
           name = "vscode-database-client2";
           publisher = "cweijan";
           version = "4.5.3";
-          sha256 = "sha256-hurTrNC1xhq7g9EFa8nQg6ntNmzCpVym7jXcmBxWxlI=";
+          sha256 = "sha256-hurTrNC1xhq7g9EFa8nQg6nTNmzCpVym7jXcmBxWxlI=";
         }
         {
           name = "vscode-python-envs";
