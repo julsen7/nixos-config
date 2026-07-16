@@ -121,28 +121,28 @@ in {
   };
 
   home.activation = {
-    setupDefaultTheme = lib.hm.dag.entryAfter ["writeBoundary"] ''
-      if [ ! -f "$HOME/.config/hypr/colors.lua" ]; then
-          echo "Initialisiere System mit Matugen und Default-Wallpaper..."
+  setupDefaultTheme = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    if [ ! -f "$HOME/.config/hypr/colors.lua" ]; then
+        echo "Initialisiere System mit Matugen und Default-Wallpaper..."
 
-          DEFAULT_WALLPAPER="${./wallpaper/DarkTree.png}"
-          THEME_SCRIPT="${./scripts/theme.sh}"
-          WALLPAPER_SCRIPT="${./scripts/wallpaper.sh}"
+        DEFAULT_WALLPAPER="${./wallpaper/DarkTree.png}"
+        THEME_SCRIPT="${./scripts/theme.sh}"
 
-          mkdir -p "$HOME/.config/dunst" "$HOME/.config/hypr" "$HOME/.config/kitty" "$HOME/.config/rofi" "$HOME/.config/waybar"
+        mkdir -p "$HOME/.config/dunst" "$HOME/.config/hypr" "$HOME/.config/kitty" "$HOME/.config/rofi" "$HOME/.config/waybar"
 
-          export PATH="$PATH:${lib.makeBinPath [ pkgs.bash pkgs.matugen pkgs.coreutils pkgs.rofi ]}"
+        export PATH="$PATH:${lib.makeBinPath [ pkgs.bash pkgs.matugen pkgs.coreutils pkgs.rofi pkgs.dunst pkgs.spicetify pkgs.procps ]}"
 
-          matugen image "$DEFAULT_WALLPAPER" --source-color-index 0 >/dev/null 2>&1
+        matugen image "$DEFAULT_WALLPAPER" --source-color-index 0 >/dev/null 2>&1
 
-          cp "$DEFAULT_WALLPAPER" "$HOME/.config/hypr/current_wallpaper"
+        cp "$DEFAULT_WALLPAPER" "$HOME/.config/hypr/current_wallpaper"
 
-          bash "$THEME_SCRIPT" "Colorful"
+        bash "$THEME_SCRIPT" "Colorful"
 
-          chmod -R +w "$HOME/.config/dunst" "$HOME/.config/hypr" "$HOME/.config/kitty" "$HOME/.config/rofi" "$HOME/.config/waybar"
-      fi
-    '';
-  };
+        chmod -R +w "$HOME/.config/dunst" "$HOME/.config/hypr" "$HOME/.config/kitty" "$HOME/.config/rofi" "$HOME/.config/waybar"
+    fi
+  '';
+};
+
 
   xdg.configFile = {
     "hypr/hyprland.lua".source = ./dotfiles/hypr/hyprland.lua;
