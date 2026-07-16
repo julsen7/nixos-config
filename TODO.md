@@ -11,6 +11,7 @@
 - rofi theme bug falls back to default
 - refactor hyprland.lua
 - default wallpaper and colorful-theme
+- zsh-dotfiles maybe possible in .config/zsh-folder
 
 ## MISSING PACKAGES
 
