@@ -1,4 +1,4 @@
-# nixos-config
+# NIXOS
 
 Boot from USB-stick with Nixos-minimal. Change host.
 
@@ -12,5 +12,5 @@ sudo mount /dev/nvme0n1p2 /mnt
 sudo mount --mkdir /dev/nvme0n1p1 /mnt/boot
 lsblk -f
 
-sudo nixos-install --flake github:julsen7/nixos-config#HOST
+sudo nixos-install --flake github:julsen7/nixos#HOST
 ```
