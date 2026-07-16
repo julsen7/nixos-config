@@ -37,7 +37,7 @@ in {
     package = pkgs.bibata-cursors;
   };
 
-  # DEFAULT WALLPAPER & THEME
+  # DEFAULT WALLPAPER
 
   home.activation = {
     setupDefaultTheme = lib.hm.dag.entryAfter ["writeBoundary"] ''
@@ -47,8 +47,6 @@ in {
           DEFAULT_WALLPAPER="${./wallpaper/DarkTree.png}"
 
           bash ${./scripts/wallpaper.sh} "$DEFAULT_WALLPAPER"
-
-          bash ${./scripts/theme.sh} "Colorful"
       fi
     '';
   };
@@ -113,21 +111,7 @@ in {
     tex-fmt
   ];
 
-  home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
-    "wallpaper".source = ./wallpaper;
-    "scripts".source = ./scripts;
-    "themes/blackwhite".source = ./themes/blackwhite;
-  };
+  # SYSTEM
 
   wayland.windowManager.hyprland.systemd.enable = false;
 
@@ -142,10 +126,18 @@ in {
     "${config.home.homeDirectory}/.spicetify"
   ];
 
+  # FILES & CONFIGURATION
+
+  home.file = {
+    "wallpaper".source = ./wallpaper;
+    "scripts".source = ./scripts;
+    "themes/blackwhite".source = ./themes/blackwhite;
+  };
+
   xdg.configFile = {
     "hypr/hyprland.lua".source = ./dotfiles/hypr/hyprland.lua;
     "matugen".source = ./dotfiles/matugen;
-    "obs-studio/basic".source = ./dotfiles/obs-studio/basic;
+    "obs-studio".source = ./dotfiles/obs-studio;
     "snappy-switcher".source = ./dotfiles/snappy-switcher;
     "spicetify".source = ./dotfiles/spicetify;
     "waybar/scripts".source = ./dotfiles/waybar/scripts;

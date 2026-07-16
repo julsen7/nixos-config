@@ -16,6 +16,8 @@ else
 fi
 
 if [[ -n "$SELECTED_THEME" ]]; then
+    mkdir -p "$HOME/.config/dunst" "$HOME/.config/hypr" "$HOME/.config/kitty" "$HOME/.config/rofi" "$HOME/.config/waybar"
+
     if [[ "$SELECTED_THEME" == "BlackWhite" ]]; then
         BLACKWHITE_THEME_DIR="$HOME/themes/blackwhite"
 
