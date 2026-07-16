@@ -47,7 +47,9 @@ in {
     nerd-fonts.jetbrains-mono
     brightnessctl
     awww
+    udiskie
     cliphist
+    wl-clipboard
     hyprpolkitagent
     hyprpicker
     hyprshot
