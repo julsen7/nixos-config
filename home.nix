@@ -118,7 +118,30 @@ in {
     "wallpaper".source = ./wallpaper;
     "scripts".source = ./scripts;
     "themes/blackwhite".source = ./themes/blackwhite;
-    "themes/blackwhite/hypr.lua".source = ./.config/hypr/colors.lua;
+  };
+
+  home.activation = {
+    setupDefaultTheme = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      if [ ! -f "$HOME/.config/hypr/colors.lua" ]; then
+          echo "Initialisiere System mit Matugen und Default-Wallpaper..."
+
+          DEFAULT_WALLPAPER="${./wallpaper/DarkTree.png}"
+          THEME_SCRIPT="${./scripts/theme.sh}"
+          WALLPAPER_SCRIPT="${./scripts/wallpaper.sh}"
+
+          mkdir -p "$HOME/.config/dunst" "$HOME/.config/hypr" "$HOME/.config/kitty" "$HOME/.config/rofi" "$HOME/.config/waybar"
+
+          export PATH="$PATH:${lib.makeBinPath [ pkgs.bash pkgs.matugen pkgs.coreutils pkgs.rofi ]}"
+
+          matugen image "$DEFAULT_WALLPAPER" --source-color-index 0 >/dev/null 2>&1
+
+          cp "$DEFAULT_WALLPAPER" "$HOME/.config/hypr/current_wallpaper"
+
+          bash "$THEME_SCRIPT" "Colorful"
+
+          chmod -R +w "$HOME/.config/dunst" "$HOME/.config/hypr" "$HOME/.config/kitty" "$HOME/.config/rofi" "$HOME/.config/waybar"
+      fi
+    '';
   };
 
   xdg.configFile = {
