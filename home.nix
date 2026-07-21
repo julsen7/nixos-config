@@ -795,7 +795,7 @@ in {
           horizontal-align = 0.5;
       };
 
-      "#element-text" {
+      "#element-text" = {
           horizontal-align = 0.5;
       }
 
