@@ -15,12 +15,6 @@ in {
 
   # THEMING & CURSOR
 
-  dconf.settings = {
-    "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
-    };
-  };
-
   gtk = {
     enable = true;
     theme = {
@@ -37,7 +31,7 @@ in {
 
   qt = {
     enable = true;
-    platformTheme.name = "adwaita";
+    platformTheme.name = "gtk";
     style.name = "adwaita-dark";
   };
 
@@ -100,10 +94,6 @@ in {
     # python ?
     # maven ?
     # gradle
-    # qemu
-    # dnsmasq
-    # libosinfo
-    # bridge-utils
     (texliveMedium.withPackages (ps: with ps; [
       biber
       collection-latexextra
@@ -371,110 +361,110 @@ in {
       };
       modules = [
         {
-            type = "custom";
-            key = " ";
+          type = "custom";
+          key = " ";
         }
         {
-            type = "custom";
-            key = "    ___              __  ";
+          type = "custom";
+          key = "    ___              __  ";
         }
         {
-            type = "custom";
-            key = "   /   |  __________/ /_ ";
+          type = "custom";
+          key = "   /   |  __________/ /_ ";
         }
         {
-            type = "custom";
-            key = "  / /| | / ___/ ___/ __ \\";
+          type = "custom";
+          key = "  / /| | / ___/ ___/ __ \\";
         }
         {
-            type = "custom";
-            key = " / ___ |/ /  / /__/ / / /";
+          type = "custom";
+          key = " / ___ |/ /  / /__/ / / /";
         }
         {
-            type = "custom";
-            key = "/_/  |_/_/   \\___/_/ /_/ ";
+          type = "custom";
+          key = "/_/  |_/_/   \\___/_/ /_/ ";
         }
         {
-            type = "custom";
-            key = " ";
+          type = "custom";
+          key = " ";
         }
         {
-            type = "custom";
-            key = "╭────────────╮";
+          type = "custom";
+          key = "╭────────────╮";
         }
         {
-            type = "title";
-            key = "│ {#34}  user    {#keys}│";
-            format = "{user-name}";
+          type = "title";
+          key = "│ {#34}  user    {#keys}│";
+          format = "{user-name}";
         }
         {
-            type = "title";
-            key = "│ {#34}󰇅  hname   {#keys}│";
-            format = "{host-name}";
+          type = "title";
+          key = "│ {#34}󰇅  hname   {#keys}│";
+          format = "{host-name}";
         }
         {
-            type = "uptime";
-            key = "│ {#34}󰅐  uptime  {#keys}│";
+          type = "uptime";
+          key = "│ {#34}󰅐  uptime  {#keys}│";
         }
         {
-            type = "os";
-            key = "│ {#34}{icon}  distro  {#keys}│";
+          type = "os";
+          key = "│ {#34}{icon}  distro  {#keys}│";
         }
         {
-            type = "kernel";
-            key = "│ {#34}  kernel  {#keys}│";
+          type = "kernel";
+          key = "│ {#34}  kernel  {#keys}│";
         }
         {
-            type = "wm";
-            key = "│ {#34}  wm      {#keys}│";
+          type = "wm";
+          key = "│ {#34}  wm      {#keys}│";
         }
         {
-            type = "de";
-            key = "│ {#34}󰇄  desktop {#keys}│";
+          type = "de";
+          key = "│ {#34}󰇄  desktop {#keys}│";
         }
         {
-            type = "terminal";
-            key = "│ {#34}  term    {#keys}│";
+          type = "terminal";
+          key = "│ {#34}  term    {#keys}│";
         }
         {
-            type = "shell";
-            key = "│ {#34}  shell   {#keys}│";
+          type = "shell";
+          key = "│ {#34}  shell   {#keys}│";
         }
         {
-            type = "packages";
-            key = "│ {#34}󰏓  pkgs    {#keys}│";
+          type = "packages";
+          key = "│ {#34}󰏓  pkgs    {#keys}│";
         }
         {
-            type = "cpu";
-            key = "│ {#34}󰍛  cpu     {#keys}│";
-            showPeCoreCount = true;
+          type = "cpu";
+          key = "│ {#34}󰍛  cpu     {#keys}│";
+          showPeCoreCount = true;
         }
         {
-            type = "gpu";
-            key = "│ {#34}󰍛  gpu     {#keys}│";
-            showPeCoreCount = true;
+          type = "gpu";
+          key = "│ {#34}󰍛  gpu     {#keys}│";
+          showPeCoreCount = true;
         }
         {
-            type = "disk";
-            key = "│ {#34}󰉉  disk    {#keys}│";
-            folders = "/";
+          type = "disk";
+          key = "│ {#34}󰉉  disk    {#keys}│";
+          folders = "/";
         }
         {
-            type = "memory";
-            key = "│ {#34}  memory  {#keys}│";
+          type = "memory";
+          key = "│ {#34}  memory  {#keys}│";
         }
         {
-            type = "custom";
-            key = "├────────────┤";
+          type = "custom";
+          key = "├────────────┤";
         }
         {
-            type = "colors";
-            key = "│ {#34} colors   {#keys}│";
-            symbol = "circle";
+          type = "colors";
+          key = "│ {#34} colors   {#keys}│";
+          symbol = "circle";
         }
         {
-            type = "custom";
-            key = "╰────────────╯";
+          type = "custom";
+          key = "╰────────────╯";
         }
       ];
     };
@@ -488,92 +478,113 @@ in {
       local success, colors = pcall(require, "colors")
 
       if not success then
-          colors = {
-              primary_container = "0xee1a1a1a"
-          }
+        colors = {
+          primary_container = "0xee1a1a1a"
+        }
       end
 
+      -- =========================================================================
+      -- Monitor-Setups
+      -- =========================================================================
       hl.monitor({
-          output   = "HDMI-A-1",
-          mode     = "2560x1440@144",
-          position = "0x0",
-          scale    = 1,
+        output   = "HDMI-A-1",
+        mode     = "2560x1440@144",
+        position = "0x0",
+        scale    = 1,
       })
 
       hl.monitor({
-          output   = "eDP-1",
-          mode     = "1920x1080@60",
-          position = "2560x500",
-          scale    = 1,
+        output   = "eDP-1",
+        mode     = "1920x1080@60",
+        position = "2560x500",
+        scale    = 1,
       })
 
+      -- Fallback for extern monitors
       hl.monitor({
-          output = "",
-          mode = "preferred",
-          position = "auto",
-          scale = 1,
-          mirror = "eDP-1"
+        output   = "",
+        mode     = "preferred",
+        position = "auto",
+        scale    = 1,
       })
 
-      hl.on("hyprland.start", function()
-          hl.exec_cmd("gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'")
-          hl.exec_cmd("gsettings set org.gnome.desktop.interface cursor-theme 'Bibata-Modern-Ice'")
-
-          hl.exec_cmd("xrandr --output HDMI-A-1 --primary")
-
-          hl.exec_cmd("uwsm app -- wl-paste --type text --watch cliphist store")
-          hl.exec_cmd("uwsm app -- wl-paste --type image --watch cliphist store")
-          hl.exec_cmd("uwsm app -- udiskie &")
-          hl.exec_cmd("uwsm app -- snappy-switcher --daemon")
-          hl.exec_cmd("uwsm app -- awww-daemon")
-
-          hl.exec_cmd("uwsm app -- discord --start-minimized")
-          hl.exec_cmd("uwsm app -- spotify", { workspace = "6 silent" })
-
-          hl.dispatch(hl.dsp.focus({ workspace = "1" }))
-      end)
-
+      -- =========================================================================
+      -- Workspaces
+      -- =========================================================================
       for i = 1, 3 do
-          hl.workspace_rule({ workspace = tostring(i), monitor = "HDMI-A-1", persistent = true })
+        hl.workspace_rule({ workspace = tostring(i), monitor = "HDMI-A-1", persistent = true })
       end
 
       for i = 4, 6 do
-          hl.workspace_rule({ workspace = tostring(i), monitor = "eDP-1", persistent = true })
+        hl.workspace_rule({ workspace = tostring(i), monitor = "eDP-1", persistent = true })
       end
 
+      -- =========================================================================
+      -- Autostart / Startup Events
+      -- =========================================================================
+      hl.on("hyprland.start", function()
+        -- Clipboard & Daemons (OHNE '&' bei uwsm!)
+        hl.exec_cmd("uwsm app -- wl-paste --type text --watch cliphist store")
+        hl.exec_cmd("uwsm app -- wl-paste --type image --watch cliphist store")
+        hl.exec_cmd("uwsm app -- udiskie")
+        hl.exec_cmd("uwsm app -- waybar")
+        hl.exec_cmd("uwsm app -- snappy-switcher --daemon")
+        hl.exec_cmd("uwsm app -- awww-daemon")
+
+        -- Apps
+        hl.exec_cmd("uwsm app -- discord --start-minimized")
+        hl.exec_cmd("uwsm app -- spotify", { workspace = "6 silent" })
+
+        -- Fokus auf Workspace 1
+        hl.dispatch(hl.dsp.focus({ workspace = "1" }))
+
+        -- Default monitor
+        hl.exec_cmd("xrandr --output HDMI-A-1 --primary")
+      end)
+
+      -- =========================================================================
+      -- General configuration
+      -- =========================================================================
       hl.config({
-          general = {
-              border_size      = 0,
-              gaps_in          = 5,
-              gaps_out         = 10,
-              resize_on_border = true,
+        general = {
+          border_size      = 0,
+          gaps_in          = 5,
+          gaps_out         = 10,
+          resize_on_border = true,
+        },
+        decoration = {
+          rounding = 20,
+          shadow   = {
+            enabled = true,
+            range   = 10,
+            color   = colors.primary_container,
           },
-          decoration = {
-              rounding = 20,
-              shadow   = {
-                  enabled = true,
-                  range = 10,
-                  color = colors.primary_container
-              }
-          },
-          input = {
-              kb_layout = "de"
-          },
+        },
+        input = {
+          kb_layout = "de",
+        },
       })
 
+      -- =========================================================================
+      -- Keybindings
+      -- =========================================================================
+      -- System & Fenstersteuerung
       hl.bind("CTRL + ALT + Delete", hl.dsp.exit())
+      hl.bind("ALT + F4", hl.dsp.window.close())
+      hl.bind("F11", hl.dsp.window.fullscreen())
+      hl.bind("SUPER + F", hl.dsp.window.float({ action = "toggle" }))
+      hl.bind("SUPER + S", hl.dsp.layout("togglesplit"))
+
+      -- Navigation & Drag/Resize
       hl.bind("SUPER + left", hl.dsp.window.move({ direction = "left" }))
       hl.bind("SUPER + right", hl.dsp.window.move({ direction = "right" }))
       hl.bind("SUPER + up", hl.dsp.window.move({ direction = "up" }))
       hl.bind("SUPER + down", hl.dsp.window.move({ direction = "down" }))
       hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), { mouse = true })
       hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true })
-      hl.bind("F11", hl.dsp.window.fullscreen())
-      hl.bind("SUPER + F", hl.dsp.window.float({ action = "toggle" }))
-      hl.bind("SUPER + S", hl.dsp.layout("togglesplit"))
-      hl.bind("ALT + F4", hl.dsp.window.close())
-      hl.bind("ALT + TAB", hl.dsp.exec_cmd("snappy-switcher next --workspace --mod alt"))
 
+      -- App-Launcher & Quick-Tools
+      hl.bind("ALT + TAB", hl.dsp.exec_cmd("snappy-switcher next --workspace --mod alt"))
       hl.bind("SUPER + TAB", hl.dsp.exec_cmd("~/scripts/wallpaper.sh"))
       hl.bind("SUPER + SPACE", hl.dsp.exec_cmd("~/scripts/theme.sh"))
       hl.bind("SUPER + SHIFT + V", hl.dsp.exec_cmd("uwsm app -- kitty --title=wiremix -e wiremix"))
@@ -584,6 +595,7 @@ in {
       hl.bind("SUPER + P", hl.dsp.exec_cmd("uwsm app -- hyprpicker -a"))
       hl.bind("SUPER + V", hl.dsp.exec_cmd("uwsm app -- cliphist list | rofi -dmenu -display-columns 2 | cliphist decode | wl-copy"))
 
+      -- Quickstart-Shortcuts
       hl.bind("SUPER + Q", hl.dsp.exec_cmd("uwsm app -- kitty"))
       hl.bind("SUPER + E", hl.dsp.exec_cmd("uwsm app -- kitty -e yazi"))
       hl.bind("SUPER + B", hl.dsp.exec_cmd("uwsm app -- zen"))
@@ -591,29 +603,32 @@ in {
       hl.bind("SUPER + D", hl.dsp.exec_cmd("uwsm app -- discord"))
       hl.bind("SUPER + C", hl.dsp.exec_cmd("uwsm app -- code"))
 
+      -- Workspaces 1-6
       for i = 1, 6 do
-          hl.bind("SUPER + " .. i, hl.dsp.focus({ workspace = i }))
-          hl.bind("SUPER + SHIFT + " .. i, hl.dsp.window.move({ workspace = i }))
+        hl.bind("SUPER + " .. i, hl.dsp.focus({ workspace = i }))
+        hl.bind("SUPER + SHIFT + " .. i, hl.dsp.window.move({ workspace = i }))
       end
 
+      -- Gestures
       hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
-      hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"),
-          { locked = true, repeating = true })
-      hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),
-          { locked = true, repeating = true })
-      hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),
-          { locked = true, repeating = true })
-      hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),
-          { locked = true, repeating = true })
+
+      -- Multimedia & Hardware-Tasten
+      hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
+      hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"), { locked = true, repeating = true })
+      hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), { locked = true, repeating = true })
+      hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"), { locked = true, repeating = true })
       hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), { locked = true, repeating = true })
       hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), { locked = true, repeating = true })
+
       hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
       hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
       hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
       hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
 
+      -- =========================================================================
+      -- Animations
+      -- =========================================================================
       hl.curve("easeInOutCubic", { type = "bezier", points = { { 0.65, 0 }, { 0.35, 1 } } })
-
       hl.curve("rubber", { type = "spring", mass = 1, stiffness = 40, dampening = 10 })
 
       hl.animation({ leaf = "windows", enabled = true, speed = 2, bezier = "easeInOutCubic", style = "slide" })
@@ -988,7 +1003,7 @@ in {
           format-wifi = " {essid}";
           tooltip-format-ethernet = " {bandwidthDownBytes}  {bandwidthUpBytes}";
           tooltip-format-wifi = " {bandwidthDownBytes}  {bandwidthUpBytes} | {signalStrength}%";
-          on-click = "uwsm app -- kitty --title=nmtui-go -e nmtui-go";
+          on-click = "uwsm app -- kitty --title=nmtui -e nmtui";
         };
 
         battery = {

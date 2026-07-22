@@ -1,5 +1,7 @@
 # NIXOS
 
+## Installation
+
 Boot from USB-stick with Nixos-minimal. Change host.
 Internet via nmtui or LAN cable.
 
@@ -39,3 +41,7 @@ lsblk -f
 
 nixos-install --flake github:julsen7/nixos#HOST
 ```
+
+## Other information
+
+Wallpapers: <https://www.wallpaperflare.com/>

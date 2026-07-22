@@ -2,10 +2,10 @@
 
 ## BUGS & FEATURES
 
-- test virt-manager rest qemu packages
-- refactor hyprland.lua
 - default wallpaper and colorful-theme
-- rofi: style von <https://github.com/adi1090x/rofi> und andere overlays (1:6, 1:8, 2:2, 2:8, 2:9, 3:10, 5:4, 6:1, 6:7, 6:9, 7:1, 7:2, 7:3, 7:5, 7:6)
+- hyplrand, waybar, rofi <https://github.com/adi1090x/rofi> (overlays 1:6, 1:8, 2:2, 2:8, 2:9, 3:10, 5:4, 6:1, 6:7, 6:9, 7:1, 7:2, 7:3, 7:5, 7:6)
+- generate hardware-configuration.nix for dektop
+- QuickShell (waybar, dunst, rofi, snappy-switcher, hyprlock)
 
 ## MISSING PACKAGES
 
@@ -19,10 +19,3 @@
 
 - durdraw
 - nmtui-go
-
-## LATER
-
-- generate hardware-configuration.nix for dektop
-- Wallpapers: <https://www.wallpaperflare.com/>
-- NixOS
-- QuickShell (waybar, dunst, rofi, snappy-switcher, hyprlock)
