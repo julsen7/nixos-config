@@ -13,7 +13,7 @@
 
   # GENERAL
 
-  networking.hostName = "desktop";
+  networking.hostName = "portable";
   networking.networkmanager.enable = true;
   networking.firewall.enable = true;
 
@@ -110,12 +110,10 @@
     qemu = {
       package = pkgs.qemu_kvm;
       swtpm.enable = true;
-      ovmf.enable = true;
-      ovmf.packages = [ pkgs.OVMFFull.fd ];
     };
   };
 
-  # programs.virt-manager.enable = true;
+  programs.virt-manager.enable = true;
 
   # USER
 
@@ -126,12 +124,6 @@
   };
 
   # PACKAGES
-
-  environment.systemPackages = with pkgs; [
-    virt-manager
-    qemu
-    OVMF
-  ];
 
   nixpkgs.config.allowUnfree = true;
 
