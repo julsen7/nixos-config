@@ -353,40 +353,40 @@ in {
     settings = {
       logo = {
         # type = "none";
-        source = "nixos_small";
+        source = "nixos";
       };
       display = {
         separator = " ";
       };
       modules = [
-        {
-          type = "custom";
-          key = " ";
-        }
-        {
-          type = "custom";
-          key = "    ___              __  ";
-        }
-        {
-          type = "custom";
-          key = "   /   |  __________/ /_ ";
-        }
-        {
-          type = "custom";
-          key = "  / /| | / ___/ ___/ __ \\";
-        }
-        {
-          type = "custom";
-          key = " / ___ |/ /  / /__/ / / /";
-        }
-        {
-          type = "custom";
-          key = "/_/  |_/_/   \\___/_/ /_/ ";
-        }
-        {
-          type = "custom";
-          key = " ";
-        }
+        # {
+        #   type = "custom";
+        #   key = " ";
+        # }
+        # {
+        #   type = "custom";
+        #   key = "    ___              __  ";
+        # }
+        # {
+        #   type = "custom";
+        #   key = "   /   |  __________/ /_ ";
+        # }
+        # {
+        #   type = "custom";
+        #   key = "  / /| | / ___/ ___/ __ \\";
+        # }
+        # {
+        #   type = "custom";
+        #   key = " / ___ |/ /  / /__/ / / /";
+        # }
+        # {
+        #   type = "custom";
+        #   key = "/_/  |_/_/   \\___/_/ /_/ ";
+        # }
+        # {
+        #   type = "custom";
+        #   key = " ";
+        # }
         {
           type = "custom";
           key = "╭────────────╮";
@@ -885,7 +885,7 @@ in {
         # MODULES LEFT
         # =========================================================================
         "custom/arch-icon" = {
-          format = "󰣇";
+          format = "󱄅"; # 󰣇
           on-click = "uwsm app -- kitty";
           tooltip = false;
         };

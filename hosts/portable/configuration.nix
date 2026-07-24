@@ -13,9 +13,11 @@
 
   # GENERAL
 
-  networking.hostName = "portable";
-  networking.networkmanager.enable = true;
-  networking.firewall.enable = true;
+  networking = {
+    hostName = "portable";
+    networkmanager.enable = true;
+    firewall.enable = true;
+  };
 
   zramSwap.enable = true;
 
@@ -38,13 +40,12 @@
   ];
 
   hardware = {
-    # enableAllFirmware = true;
-    enableRedistributableFirmware = true; # ?
+    enableRedistributableFirmware = true;
     graphics = {
       enable = true;
       enable32Bit = true;
-      # extraPackages32 = [ pkgs.obs-vkcapture ];
-      # extraPackages = [ pkgs.obs-vkcapture ];
+      extraPackages = [ pkgs.obs-vkcapture ];
+      extraPackages32 = [ pkgs.obs-vkcapture ];
     };
     nvidia = {
       modesetting.enable = true; # ?
